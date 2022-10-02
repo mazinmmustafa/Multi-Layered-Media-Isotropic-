@@ -9,7 +9,6 @@
 #include <assert.h>
 #include <time.h>
 #include <string.h>
-#include <unistd.h>
 #undef I
 // Constants
 #include "Constants.h"
