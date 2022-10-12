@@ -6,7 +6,7 @@ FC = gfortran
 EXE = program.exe
 
 # Compiler Libraries
-CLIB = -lgfortran -lquadmath -lm
+CLIB = -lgfortran -lquadmath
 
 # Flags
 CFLG = -Wall -Wextra -Ofast

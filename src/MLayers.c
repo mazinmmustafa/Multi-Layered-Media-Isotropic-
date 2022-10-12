@@ -141,7 +141,8 @@ Config* createGoldKretschmann(){
 	myConfig->Layers[n].z_u = +2000.0*nm;
 	myConfig->Layers[n].z_d = +0.0*nm;
 	myConfig->Layers[n].mu = 1.0-j*0.0;
-	myConfig->Layers[n].eps = 2.3013-j*0.0;
+	// myConfig->Layers[n].eps = 2.3013-j*0.0;
+	myConfig->Layers[n].eps = 1.0-j*0.0;
 	myConfig->Layers[n].sigma_s = 0.0-j*0.0;
 	n++;
 	// Layer 2
@@ -155,7 +156,8 @@ Config* createGoldKretschmann(){
 	myConfig->Layers[n].z_u = -50.0*nm;
 	myConfig->Layers[n].z_d = -2000.0*nm;
 	myConfig->Layers[n].mu = 1.0-j*0.0;
-	myConfig->Layers[n].eps = 1.0-j*0.0;
+	// myConfig->Layers[n].eps = 1.0-j*0.0;
+	myConfig->Layers[n].eps = 2.3013-j*0.0;
 	myConfig->Layers[n].sigma_s = 0.0-j*0.0;
 	n++;
 	//
@@ -288,3 +290,4 @@ Config* createFEKO(){
 	//
 	return myConfig;
 }
+

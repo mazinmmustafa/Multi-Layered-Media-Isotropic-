@@ -346,6 +346,70 @@ void TestFEKO2(){
 	unsetConfig(myConfig);
 }
 
+void TestGoldKretschmann(){
+	Config *myConfig=createGoldKretschmann();
+	setConfig(myConfig);
+	saveConfig(myConfig);
+	//
+	double nm=1.0E-9;
+	int Ns=4000;
+	double x_min=-2000.0*nm;
+	double x_max=+2000.0*nm;
+	double z_min=-2000.0*nm;
+	double z_max=+2000.0*nm;
+	double y=0.0*nm;
+	double x_=0.0*nm;
+	double y_=0.0*nm;
+	double z_=+20.0*nm;
+	double tol=1.0E-3;
+	//
+	double dx=(x_max-x_min)/(Ns-1.0);
+	double dz=(z_max-z_min)/(Ns-1.0);
+	double x, z;
+	complex double Ex, Ey, Ez;
+	printf("Computing Fields:\n");
+	Timer T;
+	ticTimer(&T);
+	FILE *fileX = fopen("Data/NearField/DataEx.dat", "w");
+	FILE *fileY = fopen("Data/NearField/DataEy.dat", "w");
+	FILE *fileZ = fopen("Data/NearField/DataEz.dat", "w");
+	assert(fileX!=NULL);
+	assert(fileY!=NULL);
+	assert(fileZ!=NULL);
+	//
+	FILE *file = fopen("Data/NearField/Axis.dat", "w");
+	assert(file!=NULL);
+	for (int i=0; i<Ns; i++){
+		x = x_min+i*dx;
+		z = z_min+i*dz;
+		fprintf(file, "%21.14E %21.14E\n", x, z);
+	}
+	fclose(file);		
+	for (int i=0; i<Ns; i++){
+		x = x_min+i*dx;
+		for (int j=0; j<Ns; j++){
+			z = z_min+j*dz;
+			
+			Ex = GEJxz(myConfig, x, x_, y, y_, z, z_, tol);
+			Ey = GEJyz(myConfig, x, x_, y, y_, z, z_, tol);
+			Ez = GEJzz(myConfig, x, x_, y, y_, z, z_, tol);
+			fprintf(fileX, "%21.14E ", creal(Ex));
+			fprintf(fileY, "%21.14E ", creal(Ey));
+			fprintf(fileZ, "%21.14E ", creal(Ez));
+		}
+		fprintf(fileX, "\n");
+		fprintf(fileY, "\n");
+		fprintf(fileZ, "\n");
+		progressBar(i, Ns);
+	}
+	fclose(fileX);
+	fclose(fileY);
+	fclose(fileZ);
+	tocTimer(&T);
+	//
+	unsetConfig(myConfig);
+}
+
 void TestReflection(Config *myConfig){
 	int N=myConfig->N;
 	int Ns=1000;

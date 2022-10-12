@@ -18,5 +18,6 @@ void TestFEKO2();
 void TestReflection(Config *myConfig);
 void TestTLGF(Config *myConfig, double z_);
 void TestTLGFr(Config *myConfig, double z_);
+void TestGoldKretschmann();
 
 #endif

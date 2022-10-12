@@ -5,8 +5,9 @@
 int main(){
 	
 	// FEKO validation
-	TestFEKO1();
-	TestFEKO2();
+	// TestFEKO1();
+	// TestFEKO2();
+	TestGoldKretschmann();
 	
 	return 0;
 }
