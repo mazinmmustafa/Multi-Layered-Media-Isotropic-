@@ -352,7 +352,7 @@ void TestGoldKretschmann(){
 	saveConfig(myConfig);
 	//
 	double nm=1.0E-9;
-	int Ns=4000;
+	int Ns=400;
 	double x_min=-2000.0*nm;
 	double x_max=+2000.0*nm;
 	double z_min=-2000.0*nm;
